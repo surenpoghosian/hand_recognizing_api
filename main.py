@@ -27,8 +27,8 @@ def get():
 
     hands = mp_hands.Hands(static_image_mode=True, max_num_hands=2, min_detection_confidence=0.3)
 
-    sample_img = readb64(decoded)
-    # sample_img = decoded
+    # sample_img = readb64(decoded)
+    sample_img = decoded
 
     results = hands.process(cv2.cvtColor(sample_img, cv2.COLOR_BGR2RGB))
 
