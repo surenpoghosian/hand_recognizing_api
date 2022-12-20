@@ -9,11 +9,11 @@ import base64
 
 app = Flask(__name__)
 
-# def readb64(uri):
-#     encoded_data = uri.split(',')[1]
-#     nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
-#     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-#     return img
+def readb64(uri):
+    encoded_data = uri.split(',')[1]
+    nparr = np.fromstring(base64.b64decode(encoded_data), np.uint8)
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    return img
 
 
 @app.route('/recognize', methods=['POST'])
@@ -27,8 +27,8 @@ def get():
 
     hands = mp_hands.Hands(static_image_mode=True, max_num_hands=2, min_detection_confidence=0.3)
 
-    # sample_img = readb64(decoded)
-    sample_img = decoded
+    sample_img = readb64(decoded)
+    # sample_img = decoded
 
     results = hands.process(cv2.cvtColor(sample_img, cv2.COLOR_BGR2RGB))
 
